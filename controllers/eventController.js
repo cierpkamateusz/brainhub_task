@@ -17,3 +17,17 @@ exports.postEvent = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getAllEvents = async (req, res, next) => {
+  try {
+    const allEvents = await Event.find();
+    res.status(200).json({
+      status: "success",
+      data: {
+        events: allEvents,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
